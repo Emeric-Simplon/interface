@@ -6,9 +6,6 @@ let cartElt = document.getElementById("cart");
 let totalElt = document.getElementById("total");
 let total = 0;
 
-let gif = httpGet('http://api.giphy.com/v1/gifs/random?tag=car&api_key=YjcLyb41PxOG15brFKkUoA4O1VaEtTxQ&limit=1')
-
-//YjcLyb41PxOG15brFKkUoA4O1VaEtTxQ
 
 let createProductList = jsonProductList => {
   const productListElt = document.getElementById("productList");
@@ -21,7 +18,6 @@ let createProductList = jsonProductList => {
     newProduct.id = item.ID;
     newProduct.innerHTML = `
         <h2>${item.Name}</h2>
-        <img src=${gif.data.image_original_url}></img>
         <p>${item.Brand}</p>
         <p>${item.Price} €</p>
         <select class="custom-select" selected=1>
