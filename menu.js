@@ -9,12 +9,11 @@ let categorieList = httpGet("http://localhost:3000/categories");
 const menuElt = document.getElementById("menu");
 
 let carType = id => {
-    console.log(httpGet(`http://localhost:3000/products/categorie/${id}`))
  return httpGet(`http://localhost:3000/products/categorie/${id}`);
 };
 
 categorieList.forEach(e => {
   const categorieItem = document.createElement("div");
   menuElt.appendChild(categorieItem);
-  categorieItem.innerHTML = `<button onClick=createProductList(carType(${e.ID}))>${e.Name}</button>`;
+  categorieItem.innerHTML = `<button class="btn btn-info col-sm" onClick=createProductList(carType(${e.ID}))>${e.Name}</button>`;
 });

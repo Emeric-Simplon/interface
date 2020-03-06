@@ -6,20 +6,25 @@ let cartElt = document.getElementById("cart");
 let totalElt = document.getElementById("total");
 let total = 0;
 
+let gif = httpGet('http://api.giphy.com/v1/gifs/random?tag=car&api_key=YjcLyb41PxOG15brFKkUoA4O1VaEtTxQ&limit=1')
+
+//YjcLyb41PxOG15brFKkUoA4O1VaEtTxQ
+
 let createProductList = jsonProductList => {
-  console.log(jsonProductList)
   const productListElt = document.getElementById("productList");
   productListElt.innerHTML = '';
   jsonProductList.forEach(item => {
     const newProduct = document.createElement("div");
     productListElt.appendChild(newProduct);
     newProduct.setAttribute("class", "product");
+    
     newProduct.id = item.ID;
     newProduct.innerHTML = `
         <h2>${item.Name}</h2>
+        <img src=${gif.data.image_original_url}></img>
         <p>${item.Brand}</p>
         <p>${item.Price} €</p>
-        <select selected=1>
+        <select class="custom-select" selected=1>
         <option value=1>1</option>
         <option value=2>2</option>
         <option value=3>3</option>
@@ -31,7 +36,7 @@ let createProductList = jsonProductList => {
         <option value=9>9</option>
         <option value=10>10</option>
     </select>
-        <button onClick="addProductToCart(this.parentNode.id, parseInt(this.parentNode.childNodes[8].previousElementSibling.value))">Add</button>`;
+        <button class="btn btn-success" onClick="addProductToCart(this.parentNode.id, parseInt(this.parentNode.childNodes[8].previousElementSibling.value))">Add</button>`;
   });
   productArr.push(jsonProductList);
 };
@@ -53,12 +58,13 @@ let createCart = arr => {
   cartElt.innerHTML = "";
   arr.forEach(p => {
     const cartProduct = document.createElement("div");
+    cartProduct.className = "cartProduct";
     cartElt.appendChild(cartProduct);
     cartProduct.innerHTML = `<p>${p.Name}</p>
-        <p >${p.Price}</p>
-        <button onClick="incrementQuantity(this.nextSibling)">+</button>
-        <p productId=${p.ID}>${p.Quantity}</p>
-        <button onClick="decrementQuantity(this.previousSibling)">-</button>
+        <p >${p.Price} €</p>
+        <button class="btn btn-info" onClick="incrementQuantity(this.nextSibling)">+</button>
+        <p class="quantity" productId=${p.ID}>${p.Quantity}</p>
+        <button class="btn btn-info" onClick="decrementQuantity(this.previousSibling)">-</button>
         `;
   });
 };
@@ -86,7 +92,7 @@ let decrementQuantity = node => {
   createCart(cart);
   totalElt.innerHTML = totalPrice(cart);
   if(isInCart(productId).Quantity <= 0){
-   cart.splice(cart.indexOf(isInCart(productId))) 
+   cart.splice(cart.indexOf(isInCart(productId)),1) 
    createCart(cart);
   }
 };

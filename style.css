@@ -1,24 +1,47 @@
 body {
-    width: 70%;
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
+  padding: 0;
+}
+header {
+  background-image: url("./Mustang-HD-Wallpaper-High-Quality-Free-Download.jpg");
+  height: 250px;
+  background-size: cover;
+  background-position-y: -50px;
+  background-repeat: no-repeat;
 }
 .product {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 210px;
-    margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 210px;
+  margin: 15px;
 }
 
-.product img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+#productList {
+  display: flex;
 }
 
-.product p {    
-    width: 100px;
-    margin: 15px;
+.cartProduct {
+  display: flex;
+  height: 40px;
+  margin: 15px !important;
+}
+
+.cartProduct p {
+  width: 70px;
+}
+.quantity {
+  width: 20px !important;
+  text-align: center;
+}
+#cart {
+  width: 100%;
+}
+
+#menu {
+  display: flex;
+  justify-content: center;
+  background-color: #3c8596;
+  margin-right: 0;
+  margin-left: 0;
+  border-radius: 0 0 5px 5px;
 }
